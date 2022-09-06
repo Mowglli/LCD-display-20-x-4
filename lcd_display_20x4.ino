@@ -1,14 +1,13 @@
-//Kodeudsnit er baseret fra www.jentronic.dk
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-#define ADDRESS 0x27  // Typisk 0x27 eller 0x3F
+#define ADDRESS 0x27
 
 #define CHARS 20      // 20 for 2004
 #define LINES 4       //  4 for 2004
 
-#define SDA D3        // IO port som SDA er forbundet til
-#define SCL D4        // IO port som SCL er fordundet til
+#define SDA D3        // I2C port på mikrokontroller du anvender
+#define SCL D4        // I2C port på mikrokontroller du anvender
 
 LiquidCrystal_I2C lcd(ADDRESS, CHARS, LINES);
 
@@ -18,13 +17,10 @@ int Seconds;
 void setup() {
 
   Serial.begin(9600);
-  Serial.println("Velkommen til et demoprogram!");
-
   Wire.begin(SDA, SCL);
   lcd.begin(CHARS, LINES);
   lcd.init();
   lcd.backlight();
-
   Seconds = 0;
 
 }
